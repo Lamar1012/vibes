@@ -6,13 +6,13 @@ from .models import User
 
 regex=r'^\+?1?\d{9,15}$'
 class SubscriberForm(ModelForm):
+    phone_number = forms.CharField(widget= forms.TextInput(attrs={'class':'form-control form-control-lg', 'placeholder':'Enter Phone Number'}), initial='+1')
     class Meta():
         model = User
         fields = ('phone_number',)
         labels =  {'phone_number': ''}
-        widgets = {
-            'phone_number':forms.TextInput(attrs={'class':'form-control form-control-lg', 'placeholder':'+1 (123) 456-7890'})
-        }
+        
+
     
     def clean_phone_number(self):
         phone_number = self.cleaned_data.get('phone_number')
